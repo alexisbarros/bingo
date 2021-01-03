@@ -3,7 +3,7 @@ import React from 'react';
 // Modules
 import { View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
-import { Link } from 'react-router-native'
+import { Link } from 'react-router-native';
 
 const home = () => {
 
@@ -32,8 +32,8 @@ const home = () => {
                 >O app para jogar bingo com toda sua família e amigos.</Text>
 
                 <Link 
-                    to='/how-to'
-                    underlayColor="#f0f4f7"
+                    to='/how-to-play'
+                    underlayColor="white"
                     style={{
                         marginTop: 16
                     }}
