@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import { Link } from 'react-router-native';
 
-const home = () => {
+export default function({ history }) {
 
     return(
 
@@ -54,12 +54,12 @@ const home = () => {
                     padding: 20
                 }}
             >
-
                 <Button
                     title='Cartela'
                     style={{
                         width: '100%'
                     }}
+                    onPress={() => history.push('/cart')}
                 />
 
                 <Button
@@ -79,5 +79,3 @@ const home = () => {
     )
 
 };
-
-export default home

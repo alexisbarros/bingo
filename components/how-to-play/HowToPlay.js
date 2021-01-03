@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function (){
+export default function ({ history }){
 
     return(
 
@@ -29,16 +29,15 @@ export default function (){
             <Header
                 statusBarProps={{ barStyle: 'light-content' }}
                 leftComponent={
-                    <Link to='/' underlayColor="#3D6DCC">
-                        <Icon
-                            name='arrow-back-outline'
-                            type='ionicon'
-                            color='white'
-                            style={{
-                                marginTop: 15
-                            }}
-                        />
-                    </Link>
+                    <Icon
+                        name='arrow-back-outline'
+                        type='ionicon'
+                        color='white'
+                        style={{
+                            marginTop: 15
+                        }}
+                        onPress={() => history.push('/')}
+                    />
                 }
                 centerComponent={
                     <Text
