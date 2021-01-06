@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Modules
 import { View, StyleSheet, Alert } from 'react-native';
@@ -23,9 +23,33 @@ const styles = StyleSheet.create({
     }
 });
 
-const cart = new Array(25).fill('99');
-
 export default function ({ history }){
+
+    const [ cart, setCart ] = useState([1,2,3]);
+    useEffect(() => {
+        generateNewCart();
+
+    }, []);
+
+    /**
+     * Generate a new cart.
+     * @param null
+     */
+    const generateNewCart = () => {
+
+        let cartArray = [];
+
+        while(cartArray.length < 25){
+            let numberToPush = Math.floor(Math.random() * (80 - 1 + 1) + 1);
+
+            if(!cartArray.includes(numberToPush)){
+                cartArray.push(numberToPush);
+            }
+        }
+        cartArray = cartArray.sort((a, b) => (a - b));
+
+        setCart([...cartArray]);
+    }
 
     return(
 
@@ -87,6 +111,7 @@ export default function ({ history }){
                         width: '100%',
                         marginBottom: 20
                     }}
+                    onPress={() => generateNewCart()}
                 />
 
                 <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
