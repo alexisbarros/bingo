@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 // Modules
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert, TouchableOpacity, Image } from 'react-native';
 import { Text, Header, Icon, Button } from 'react-native-elements';
+
+import bean from '../../assets/img/bean.png';
 
 const styles = StyleSheet.create({
     title: {
@@ -25,7 +27,9 @@ const styles = StyleSheet.create({
 
 export default function ({ history }){
 
-    const [ cart, setCart ] = useState([1,2,3]);
+    const [ cart, setCart ] = useState([]);
+    const [ choosedNumbers, setChoosedNumbers ] = useState([]);
+
     useEffect(() => {
         generateNewCart();
 
@@ -49,6 +53,28 @@ export default function ({ history }){
         cartArray = cartArray.sort((a, b) => (a - b));
 
         setCart([...cartArray]);
+        setChoosedNumbers([]);
+    }
+
+    /**
+     * Select or unselect a number.
+     * @param {Number} number 
+     */
+    const selectUnselectANumber = (number) => {
+
+        let localChoosedNumbers = choosedNumbers;
+
+        if(localChoosedNumbers.includes(number)){
+            localChoosedNumbers.splice(localChoosedNumbers.indexOf(number), 1);
+        } else {
+            localChoosedNumbers.push(number);
+        }
+
+        setChoosedNumbers([...localChoosedNumbers]);
+        setCart([...cart]);
+
+        // console.log(localChoosedNumbers);
+
     }
 
     return(
@@ -120,12 +146,37 @@ export default function ({ history }){
 
                             return(
 
-                                <View style={styles.numberSquare}>
-                                    <View style={styles.numberSquareInto}>
+                                <View 
+                                    style={styles.numberSquare}
+                                    key={el}
+                                >
+                                    
+                                    <TouchableOpacity 
+                                        style={styles.numberSquareInto}
+                                        onPress={() => {
+                                            if(i !== 12) selectUnselectANumber(el);
+                                        }}
+                                    >
                                         {i !== 12 ?
-                                            <Text>{el}</Text> : null
+                                            <View>
+                                                <Text>{el}</Text>
+                                                {
+                                                    choosedNumbers.includes(el) ?
+                                                        <Image 
+                                                            style={{ 
+                                                                height: 45, 
+                                                                width: 20, 
+                                                                position: 'absolute', 
+                                                                marginTop: -10,
+                                                                transform: [{ rotate: "35deg" }]
+                                                            }} 
+                                                            source={bean} 
+                                                        /> : null
+                                                }
+                                            </View> : null
                                         }
-                                    </View>
+                                    </TouchableOpacity>
+
                                 </View>
 
                             )
