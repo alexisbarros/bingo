@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 // Modules
-import { View, StyleSheet, Alert, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, Alert, TouchableOpacity, Image, ImageBackground, Dimensions } from 'react-native';
 import { Text, Header, Icon, Button } from 'react-native-elements';
 
 import bean from '../../assets/img/bean.png';
+import bingo from '../../assets/img/bingo.png';
 
 const styles = StyleSheet.create({
     title: {
@@ -29,6 +30,7 @@ export default function ({ history }){
 
     const [ cart, setCart ] = useState([]);
     const [ choosedNumbers, setChoosedNumbers ] = useState([]);
+    const [ getBingo, setGetBingo ] = useState(false);
 
     useEffect(() => {
         generateNewCart();
@@ -40,6 +42,8 @@ export default function ({ history }){
      * @param null
      */
     const generateNewCart = () => {
+
+        setGetBingo(false);
 
         let cartArray = [];
 
@@ -73,7 +77,9 @@ export default function ({ history }){
         setChoosedNumbers([...localChoosedNumbers]);
         setCart([...cart]);
 
-        // console.log(localChoosedNumbers);
+        if(choosedNumbers.length === (cart.length - 1)){
+            setGetBingo(true);
+        }
 
     }
 
@@ -137,7 +143,17 @@ export default function ({ history }){
                         width: '100%',
                         marginBottom: 20
                     }}
-                    onPress={() => generateNewCart()}
+                    onPress={() => {
+                        Alert.alert(
+                            "Gerar nova cartela",
+                            "Deseja realmente gerar uma nova cartela?",
+                            [
+                              { text: "Cancelar", style: "cancel" },
+                              { text: "Sim", onPress: () => generateNewCart() }
+                            ],
+                            { cancelable: false }
+                        );
+                    }}
                 />
 
                 <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -176,16 +192,31 @@ export default function ({ history }){
                                             </View> : null
                                         }
                                     </TouchableOpacity>
-
+                                    
                                 </View>
-
                             )
-
+   
                         })
                     }
+
                     
                 </View>
             
+                {
+                    getBingo ?
+                        <View>
+                            <ImageBackground 
+                                source={bingo}
+                                style={{
+                                    flex: 1,
+                                    resizeMode: 'cover',
+                                    justifyContent: "center",
+                                    width: '100%',
+                                    height: Dimensions.get("window").height / 2,
+                                }}
+                            />
+                        </View> : null
+                }
             </View>
 
         </View>
