@@ -3,7 +3,6 @@ import React from 'react';
 // Modules
 import { View, StyleSheet } from 'react-native';
 import { Text, Header, Icon } from 'react-native-elements';
-import { Link } from 'react-router-native';
 
 const styles = StyleSheet.create({
     title: {

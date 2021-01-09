@@ -71,6 +71,7 @@ export default function({ history }) {
                     buttonStyle={{
                         backgroundColor: '#606060'
                     }}
+                    onPress={() => history.push('/roulette')}
                 />
 
             </View>
