@@ -1,8 +1,10 @@
 import React from 'react';
 
 // Modules
-import { View, Alert, StyleSheet, ScrollView } from 'react-native';
-import { Text, Header, Icon } from 'react-native-elements';
+import { View, Alert, StyleSheet, ScrollView, Dimensions, Image } from 'react-native';
+import { Text, Header, Icon, Button } from 'react-native-elements';
+
+import roulette from '../../assets/img/roulette.jpg';
 
 const styles = StyleSheet.create({
     title: {
@@ -74,7 +76,8 @@ export default function({ history }) {
 
             <View
                 style={{
-                    padding: 20
+                    padding: 20,
+                    height: Dimensions.get("window").height - 100
                 }}
             >
 
@@ -82,7 +85,35 @@ export default function({ history }) {
                     Roleta
                 </Text>
 
-                <ScrollView style={{ marginBottom: 300 }}>
+                <View 
+                    style={{ 
+                        height: 150, 
+                        width: '100%', 
+                        marginBottom: 20,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+
+                    <Image
+                        source={roulette}
+                        style={{
+                            flex: 1,
+                            resizeMode: 'contain',
+                        }}
+                    />
+
+                </View>
+
+                <Button
+                    title='Sortear número'
+                    style={{
+                        width: '100%',
+                        marginBottom: 20
+                    }}
+                />
+
+                <ScrollView>
 
                     <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
                         {
