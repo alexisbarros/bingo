@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Modules
 import { View, Alert, StyleSheet, ScrollView, Dimensions, Image } from 'react-native';
@@ -27,6 +27,30 @@ const styles = StyleSheet.create({
 });
 
 export default function({ history }) {
+
+    const [ numbersDrawn, setNumbersDrawn ] = useState([]);
+
+    /**
+     * Draw a number in roulette.
+     * @param {null}
+     */
+    let drawNumber = () => {
+
+        let localNumbersDrawn = numbersDrawn;
+        let numberPushedFlag = false;
+
+        while(!numberPushedFlag){
+            
+            let numberToPush = Math.floor(Math.random() * (80 - 1 + 1) + 1);
+            if(!localNumbersDrawn.includes(numberToPush)){
+                localNumbersDrawn.push(numberToPush);
+                numberPushedFlag = true;
+            }
+
+        }
+
+        setNumbersDrawn([...localNumbersDrawn]);
+    }
 
     return(
 
@@ -111,6 +135,7 @@ export default function({ history }) {
                         width: '100%',
                         marginBottom: 20
                     }}
+                    onPress={() => drawNumber()}
                 />
 
                 <ScrollView>
@@ -127,10 +152,18 @@ export default function({ history }) {
                                     >
                                         
                                         <View
-                                            style={styles.numberCircle}
+                                            style={{
+                                                ...styles.numberCircle,
+                                                backgroundColor: !numbersDrawn.includes(i+1) ? 'lightgray' : null,
+                                                borderColor: !numbersDrawn.includes(i+1) ? 'lightgray' : null, 
+                                            }}
                                         >
                                             <View>
-                                                <Text>{i + 1}</Text>
+                                                <Text
+                                                    style={{
+                                                        color: !numbersDrawn.includes(i+1) ? 'white' : null
+                                                    }}
+                                                >{i + 1}</Text>
                                             </View>
                                         </View>
                                         
