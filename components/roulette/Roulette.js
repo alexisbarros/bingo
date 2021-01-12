@@ -16,13 +16,36 @@ const styles = StyleSheet.create({
     },
     numberCircle: {
         borderWidth: 1,
-        borderRadius: 5,
         borderColor: 'lightgray',
         width: 50,
         height: 50,
         borderRadius: 100 / 2,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    numberDrawnCircle: {
+        width: 150,
+        height: 150,
+        borderRadius: 300 / 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    numberDrawnCircleLine: {
+        borderWidth: 5,
+        borderColor: 'white',
+        width: 90,
+        height: 90,
+        borderRadius: 180 / 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    numberDrawnCircleTextIn: {
+        width: 70,
+        height: 70,
+        borderRadius: 140 / 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white'
     }
 });
 
@@ -97,6 +120,48 @@ export default function({ history }) {
                     height: 80
                 }}
             />
+
+            <View
+                style={{
+                    height: Dimensions.get('window').height - 80,
+                    width: '100%',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    position: 'absolute',
+                    zIndex: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 80
+                }}
+            >
+
+                <View 
+                    style={{
+                        ...styles.numberDrawnCircle,
+                        backgroundColor: 'orange'
+                    }}
+                >
+                    <View style={styles.numberDrawnCircleLine}>
+                        <View style={styles.numberDrawnCircleTextIn}>
+
+                            <Text
+                                style={{ fontWeight: 'bold', fontSize: 28 }}
+                            >
+                                8
+                            </Text>
+
+                        </View>
+                    </View>
+                </View>
+
+                <Button
+                    title='Fechar'
+                    style={{
+                        width: 150,
+                        marginTop: 30
+                    }}
+                />
+
+            </View>
 
             <View
                 style={{
