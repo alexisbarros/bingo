@@ -52,6 +52,9 @@ const styles = StyleSheet.create({
 export default function({ history }) {
 
     const [ numbersDrawn, setNumbersDrawn ] = useState([]);
+    const [ numberDrawn, setNumberDrawn ] = useState('');
+    const [ colorsBall, setColorsBall ] = useState([ 'red', 'orange', 'blue', 'green', 'pink' ]);
+    const [ colorBall, setColorBall ] = useState(0);
 
     /**
      * Draw a number in roulette.
@@ -59,6 +62,7 @@ export default function({ history }) {
      */
     let drawNumber = () => {
 
+        let localNumberDrawn = numberDrawn;
         let localNumbersDrawn = numbersDrawn;
         let numberPushedFlag = false;
 
@@ -66,12 +70,15 @@ export default function({ history }) {
             
             let numberToPush = Math.floor(Math.random() * (80 - 1 + 1) + 1);
             if(!localNumbersDrawn.includes(numberToPush)){
+                localNumberDrawn = numberToPush;
                 localNumbersDrawn.push(numberToPush);
                 numberPushedFlag = true;
             }
 
         }
 
+        setColorBall(localNumbersDrawn.length % 4);
+        setNumberDrawn(localNumberDrawn);
         setNumbersDrawn([...localNumbersDrawn]);
     }
 
@@ -121,47 +128,52 @@ export default function({ history }) {
                 }}
             />
 
-            <View
-                style={{
-                    height: Dimensions.get('window').height - 80,
-                    width: '100%',
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    position: 'absolute',
-                    zIndex: 10,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginTop: 80
-                }}
-            >
+            {
+                numberDrawn ? 
+            
+                    <View
+                        style={{
+                            height: Dimensions.get('window').height - 80,
+                            width: '100%',
+                            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                            position: 'absolute',
+                            zIndex: 10,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginTop: 80
+                        }}
+                    >
 
-                <View 
-                    style={{
-                        ...styles.numberDrawnCircle,
-                        backgroundColor: 'orange'
-                    }}
-                >
-                    <View style={styles.numberDrawnCircleLine}>
-                        <View style={styles.numberDrawnCircleTextIn}>
+                        <View 
+                            style={{
+                                ...styles.numberDrawnCircle,
+                                backgroundColor: colorsBall[colorBall || 0]
+                            }}
+                        >
+                            <View style={styles.numberDrawnCircleLine}>
+                                <View style={styles.numberDrawnCircleTextIn}>
 
-                            <Text
-                                style={{ fontWeight: 'bold', fontSize: 28 }}
-                            >
-                                8
-                            </Text>
+                                    <Text
+                                        style={{ fontWeight: 'bold', fontSize: 28 }}
+                                    >
+                                        {numberDrawn}
+                                    </Text>
 
+                                </View>
+                            </View>
                         </View>
-                    </View>
-                </View>
 
-                <Button
-                    title='Fechar'
-                    style={{
-                        width: 150,
-                        marginTop: 30
-                    }}
-                />
+                        <Button
+                            title='Fechar'
+                            style={{
+                                width: 150,
+                                marginTop: 30
+                            }}
+                            onPress={() => setNumberDrawn('')}
+                        />
 
-            </View>
+                    </View> : null
+            }
 
             <View
                 style={{
