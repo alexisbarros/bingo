@@ -8,22 +8,26 @@ Bingo app is a mobile app to play bingo game that has cards and a roulette. The 
   - [Instalation](#instalation)
   - [Start](#start)
 - [Project structure](#project-structure)
-  - [/assets/imgs](#assets-imgs)
+  - [/assets](#assets)
   - [/components](#components)
   - [/node_modules](#node_modules)
 - [Author](#author)
 
 ## Screens
 
-<img alt='Login' src="./assets/img/screens/screen_login.jpeg" width="19%" style="margin-right: 1%;">
+<p float="left">
+  
+  <img alt='Login' src="./assets/img/screens/screen_login.jpeg" width="19%" style="margin-right: 1%;">
 
-<img alt='How To' src="./assets/img/screens/screen_howto.jpeg" width="19%" style="margin-right: 1%;">
+  <img alt='How To' src="./assets/img/screens/screen_howto.jpeg" width="19%" style="margin-right: 1%;">
 
-<img alt='Card' src="./assets/img/screens/screen_card.jpeg" width="19%" style="margin-right: 1%;">
+  <img alt='Card' src="./assets/img/screens/screen_card.jpeg" width="19%" style="margin-right: 1%;">
 
-<img alt='Roulette' src="./assets/img/screens/screen_roulette.jpeg" width="19%" style="margin-right: 1%;">
+  <img alt='Roulette' src="./assets/img/screens/screen_roulette.jpeg" width="19%" style="margin-right: 1%;">
 
-<img alt='Number drawn' src="./assets/img/screens/screen_numberdrawn.jpeg" width="19%" style="margin-right: 1%;">
+  <img alt='Number drawn' src="./assets/img/screens/screen_numberdrawn.jpeg" width="19%" style="margin-right: 1%;">
+
+</p>
 
 ## Running the project
 
@@ -86,7 +90,7 @@ bingo/
 
 Below is a breakdown of some project directories.
 
-### /assets/imgs
+### /assets
 
 Contains all images files of the project.
 
